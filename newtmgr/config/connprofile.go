@@ -60,6 +60,7 @@ const (
 	CONN_TYPE_BLE_PLAIN
 	CONN_TYPE_BLE_OIC
 	CONN_TYPE_UDP_PLAIN
+	CONN_TYPE_UDP_SMP
 	CONN_TYPE_UDP_OIC
 	CONN_TYPE_MTECH_LORA_OIC
 )
@@ -72,6 +73,7 @@ var connTypeNameMap = map[ConnType]string{
 	CONN_TYPE_BLE_PLAIN:      "bhd",
 	CONN_TYPE_BLE_OIC:        "oic_bhd",
 	CONN_TYPE_UDP_PLAIN:      "udp",
+	CONN_TYPE_UDP_SMP:        "udp_smp",
 	CONN_TYPE_UDP_OIC:        "oic_udp",
 	CONN_TYPE_MTECH_LORA_OIC: "oic_mtech",
 	CONN_TYPE_NONE:           "???",

@@ -34,6 +34,7 @@ import (
 	"mynewt.apache.org/newtmgr/nmxact/nmserial"
 	"mynewt.apache.org/newtmgr/nmxact/sesn"
 	"mynewt.apache.org/newtmgr/nmxact/udp"
+	"mynewt.apache.org/newtmgr/nmxact/udp_smp"
 	"mynewt.apache.org/newtmgr/nmxact/xport"
 )
 
@@ -148,6 +149,9 @@ func GetXport() (xport.Xport, error) {
 
 	case config.CONN_TYPE_UDP_PLAIN, config.CONN_TYPE_UDP_OIC:
 		globalXport = udp.NewUdpXport()
+		
+	case config.CONN_TYPE_UDP_SMP:
+		globalXport = udp_smp.NewUdpXport()
 
 	case config.CONN_TYPE_MTECH_LORA_OIC:
 		cfg := mtech_lora.NewXportCfg()
@@ -231,6 +235,12 @@ func buildSesnCfg() (sesn.SesnCfg, error) {
 		return sc, nil
 
 	case config.CONN_TYPE_UDP_PLAIN:
+		sc.MgmtProto = sesn.MGMT_PROTO_NMP
+		sc.PeerSpec.Udp = cp.ConnString
+
+		return sc, nil
+		
+	case config.CONN_TYPE_UDP_SMP:
 		sc.MgmtProto = sesn.MGMT_PROTO_NMP
 		sc.PeerSpec.Udp = cp.ConnString
 
